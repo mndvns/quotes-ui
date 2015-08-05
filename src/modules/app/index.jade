@@ -1,0 +1,18 @@
+import './index.ess'
+
+p.App-quote= _.quote
+form.App-form
+  input.App-form-input(ref='text' placeholder='...')
+  button.App-form-button(type='button' onClick=this.create.bind(null, _.create)) Add
+
+export.
+  function create(template) {
+    var text = this.refs.text.getDOMNode().value;
+    this.forms.create(template)
+      .set('text', text)
+      .submit(function(err, res) {
+        if (err) return console.error(err);
+      });
+  }
+
+export var displayName = 'App'
